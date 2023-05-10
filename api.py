@@ -1,5 +1,5 @@
 import re
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify
 import requests
 import json
 import zlib
@@ -29,7 +29,7 @@ def get_companies(event, context):
             'statusCode': 400,
             'body': json.dumps({'error': 'Missing companyNames parameter'})
         }
-    
+
     company_names = [name.strip() for name in company_names_param.split(',')]
 
     json_data = fetch_and_decompress_json()
@@ -52,14 +52,5 @@ def get_companies(event, context):
         'body': json.dumps(results)
     }
 
-# Endpoint for the serverless function
-@app.route('/.netlify/functions/api', methods=['GET'])
-def serverless_function():
-    event = {
-        'queryStringParameters': request.args.to_dict()
-    }
-    context = {}
-    return get_companies(event, context)
-
 if __name__ == '__main__':
-    app.run()
+    app.run(port=3000)
