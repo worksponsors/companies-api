@@ -1,6 +1,2 @@
 [build]
-  command = "pip install -r requirements.txt -t ./ && echo 'Python dependencies installed'"
-  functions = "netlify-functions"
 
-[build.environment]
-  PYTHON_VERSION = "3.8"

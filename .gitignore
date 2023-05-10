@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.pyi
+*.pyproj
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+
+# Virtual Environment
+venv/
+env/
+/.env
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*~
+.project
+*.iml
+
+# Logs and Databases
+*.log
+*.sqlite3
+*.db
+*.hdf5
+*.pkl
+*.bak
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.tmp.*
+*.swp
+*.swo
+*.swn
+*.bak.*
+*.cache/
+*.pytest_cache/
+
+# Exclude files and directories
+node_modules/
+dist/
+build/
+.cache/
+.env
+
+# Include serverless function files
+!netlify-functions/
+netlify-functions/*
+
+# Exclude other files
+
+# Go build and binary files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test and coverage files
+*.test
+*.out
+*.prof
+
+# Go module files and directories
+vendor/
+go.sum
+
+# Go environment file
+.env
+
+# Go generated files
+bin/
+pkg/
+
+
+
