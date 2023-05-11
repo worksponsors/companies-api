@@ -30,10 +30,9 @@ exports.handler = async (event, context) => {
     const results = companyNames.map((name) => {
       const searchResults = searchByName(name, jsonData);
       return {
-        [name]: {
+        company: {
           key: name,
-          isMatchFound: searchResults.length > 0,
-          count: searchResults.length,
+          match: searchResults.length,
         },
       };
     });
