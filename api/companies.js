@@ -26,15 +26,24 @@ exports.handler = async (event, context) => {
     }
 
     const companyNames = companyNamesParam.split(',').map((name) => name.trim());
-
     const results = companyNames.map((name) => {
-      const searchResults = searchByName(name, jsonData);
-      return {
-        company: {
-          key: name,
-          match: searchResults.length,
-        },
-      };
+      if (name) {
+        const searchKey = encodeSpecialCharacters(name);
+        const searchResults = searchByName(searchKey, jsonData);
+        const result = {
+          company: {
+            key: searchKey,
+            match: searchResults.length,
+          },
+        };
+
+        if (searchResults.length === 1) {
+          result.company.exact_match = searchResults[0].name;
+          result.company.exact_route = searchResults[0].route;
+        }
+
+        return result;
+      }
     });
 
     return {
@@ -62,4 +71,15 @@ function searchByName(searchKey, refinedData) {
   );
 
   return searchResults;
+}
+
+function encodeSpecialCharacters(value) {
+  // Replace special characters with their encoded counterparts
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
 }
